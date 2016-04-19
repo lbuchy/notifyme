@@ -1,0 +1,16 @@
+#!/usr/bin/env python2
+import notify2
+import subprocess
+import sys
+
+
+def notify(cmd):
+	notify2.init("notifyme")
+	sp = subprocess.call(cmd)
+	m = notify2.Notification("Completed ({})".format(sp), " ".join(cmd))
+	m.show()
+	return sp
+	
+
+if __name__ == "__main__":
+	notify(sys.argv[1:])
